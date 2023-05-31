@@ -16,7 +16,7 @@ local function getLanguage(locale)
     end
 end
 
-function LoadLanguageForResource(resource, language)
+local function loadLanguage(resource, language)
     local file = "i18n" .. "/" .. language .. ".json"
     local contents = LoadResourceFile(resource, file)
 

@@ -1,13 +1,13 @@
-function GetLocale()
+local function getLocale()
     return Locale
 end
 
-function GetLanguage()
+local function getLanguage()
     return Language
 end
 
-exports("getLocale", GetLocale)
-exports("getLanguage", GetLanguage)
+exports("getLocale", getLocale)
+exports("getLanguage", getLanguage)
 
 local function initialize()
     local language = GetCurrentLanguage()

@@ -21,7 +21,6 @@ function LoadLanguageForResource(resource, language)
     local contents = LoadResourceFile(resource, file)
 
     if contents == nil then
-        print("Language " .. language .. " was not found")
         Debug("File " .. file .. " for language " .. language .. " is missing")
         return nil
     end

@@ -16,6 +16,14 @@ LanguageIDs = {
 
 local labels = {}
 
+local function getGameLocale()
+    if not GetCurrentLanguage then
+        return nil
+    end
+
+    return LanguageIDs[GetCurrentLanguage()]
+end
+
 local function getLocale()
     return GetConvar("locale", "en-US")
 end
@@ -131,5 +139,6 @@ function GetLabel(resource, label, locale)
     return label
 end
 
+GameLocale = getGameLocale()
 Locale = getLocale()
 Language = getLanguage(Locale)

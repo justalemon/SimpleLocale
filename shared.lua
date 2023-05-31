@@ -96,20 +96,24 @@ function Load(resource, baseLocale)
     end
 end
 
-function GetLabel(resource, label)
+function GetLabel(resource, label, locale)
+    if locale == nil then
+        locale = Locale
+    end
+
     local labelsForResource = labels[resource]
 
     if labelsForResource == nil then
-        Load(resource, Locale)
+        Load(resource, locale)
         labelsForResource = labels[resource]
     end
 
-    local labelsLocaleSpecific = labelsForResource[Locale]
+    local labelsLocaleSpecific = labelsForResource[locale]
     if labelsLocaleSpecific ~= nil and labelsLocaleSpecific[label] ~= nil then
         return labelsLocaleSpecific[label]
     end
 
-    local labelsLocaleGeneric = labelsForResource[getLanguage(Locale)]
+    local labelsLocaleGeneric = labelsForResource[getLanguage(locale)]
     if labelsLocaleGeneric ~= nil and labelsLocaleGeneric[label] ~= nil then
         return labelsLocaleGeneric[label]
     end

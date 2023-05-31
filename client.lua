@@ -7,7 +7,7 @@ local function getLanguage()
 end
 
 local function getLabel(label)
-    return GetLabel(GetInvokingResource(), label)
+    return GetLabel(GetInvokingResource(), label, Locale)
 end
 
 local function preload(locale)

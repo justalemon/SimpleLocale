@@ -17,4 +17,10 @@ local function setClientKnownLanguage(langId)
     Debug("Received langId " .. language .. " for client " .. tostring(source))
 end
 
+local function playerDropped(_)
+    clientLanguages[source] = nil
+    Debug("Removed known language for player " .. tostring(source))
+end
+
 RegisterNetEvent("simpleLocale:setClientKnownLanguage", setClientKnownLanguage)
+RegisterNetEvent("playerDropped", playerDropped)

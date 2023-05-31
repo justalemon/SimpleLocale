@@ -1,4 +1,3 @@
-
 local clientLanguages = {}
 
 local function setClientKnownLanguage(langId)

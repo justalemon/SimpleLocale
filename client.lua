@@ -6,8 +6,17 @@ local function getLanguage()
     return Language
 end
 
+local function preload(locale)
+    if locale == nil then
+        locale = Locale
+    end
+
+    Load(GetCurrentResourceName(), locale)
+end
+
 exports("getLocale", getLocale)
 exports("getLanguage", getLanguage)
+exports("preload", preload)
 
 local function initialize()
     local language = GetCurrentLanguage()

@@ -2,8 +2,12 @@ local function getLocale()
     return GetConvar("locale", "en-US")
 end
 
-local function getLanguage()
-    local lang = Split(getLocale(), "-")[1]
+local function getLanguage(locale)
+    if locale == nil then
+        locale = getLocale()
+    end
+
+    local lang = Split(locale, "-")[1]
 
     if lang == nil then
         return "en"
@@ -34,4 +38,4 @@ function LoadLanguageForResource(resource, language)
 end
 
 Locale = getLocale()
-Language = getLanguage()
+Language = getLanguage(Locale)

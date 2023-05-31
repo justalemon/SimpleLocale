@@ -35,3 +35,10 @@ end
 
 exports("getCurrentLocale", getCurrentLocale)
 exports("getCurrentLanguage", getCurrentLanguage)
+
+local function initialize()
+    local language = GetCurrentLanguage()
+    TriggerServerEvent("simpleLocale:setClientKnownLanguage", language)
+end
+
+Citizen.CreateThread(initialize)

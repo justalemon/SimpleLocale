@@ -111,7 +111,7 @@ function GetLabel(resource, label, locale)
 
     local labelsForResource = labels[resource]
 
-    if labelsForResource == nil then
+    if labelsForResource == nil or labelsForResource[locale] == nil then
         Load(resource, locale)
         labelsForResource = labels[resource]
     end

@@ -70,6 +70,12 @@ function Load(resource, baseLocale)
 
     for _, locale in ipairs(possibleLocales) do
         Debug("Attempting to load " .. locale .. " for " .. resource)
+
+        if labels[resource][locale] ~= nil then
+            Debug("Locale " .. locale .. " already exists for resource " .. resource)
+            goto continue
+        end
+
         localizedLabels = loadLanguage(resource, locale)
 
         if localizedLabels == nil then
@@ -78,6 +84,8 @@ function Load(resource, baseLocale)
             labels[resource][locale] = localizedLabels
             break
         end
+
+        ::continue::
     end
 
     if localizedLabels == nil then
@@ -86,6 +94,37 @@ function Load(resource, baseLocale)
     else
         return true
     end
+end
+
+function GetLabel(resource, label)
+    local labelsForResource = labels[resource]
+
+    if labelsForResource == nil then
+        Load(resource, Locale)
+        labelsForResource = labels[resource]
+    end
+
+    local labelsLocaleSpecific = labelsForResource[Locale]
+    if labelsLocaleSpecific ~= nil and labelsLocaleSpecific[label] ~= nil then
+        return labelsLocaleSpecific[label]
+    end
+
+    local labelsLocaleGeneric = labelsForResource[getLanguage(Locale)]
+    if labelsLocaleGeneric ~= nil and labelsLocaleGeneric[label] ~= nil then
+        return labelsLocaleGeneric[label]
+    end
+
+    local labelsEnglishUnitedStates = labelsForResource["en-US"]
+    if labelsEnglishUnitedStates ~= nil and labelsEnglishUnitedStates[label] ~= nil then
+        return labelsEnglishUnitedStates[label]
+    end
+
+    local labelsEnglishGeneric = labelsForResource["en"]
+    if labelsEnglishGeneric ~= nil and labelsEnglishGeneric[label] ~= nil then
+        return labelsEnglishGeneric[label]
+    end
+
+    return label
 end
 
 Locale = getLocale()

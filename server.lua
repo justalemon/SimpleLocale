@@ -23,3 +23,9 @@ end
 
 RegisterNetEvent("simpleLocale:setClientKnownLanguage", setClientKnownLanguage)
 RegisterNetEvent("playerDropped", playerDropped)
+
+local function getLabel(label)
+    return GetLabel(GetInvokingResource(), label)
+end
+
+exports("getLabel", getLabel)

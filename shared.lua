@@ -1,9 +1,9 @@
-function GetCurrentLocale()
+local function getLocale()
     return GetConvar("locale", "en-US")
 end
 
-function GetCurrentLanguage()
-    local lang = Split(GetCurrentLocale(), "-")[1]
+local function getLanguage()
+    local lang = Split(getLocale(), "-")[1]
 
     if lang == nil then
         return "en"
@@ -32,3 +32,6 @@ function LoadLanguageForResource(resource, language)
         return nil
     end
 end
+
+Locale = getLocale()
+Language = getLanguage()

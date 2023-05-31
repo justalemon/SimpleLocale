@@ -6,8 +6,8 @@ function GetLanguage()
     return Language
 end
 
-exports("getCurrentLocale", GetLocale)
-exports("getCurrentLanguage", GetLanguage)
+exports("getLocale", GetLocale)
+exports("getLanguage", GetLanguage)
 
 local function initialize()
     local language = GetCurrentLanguage()

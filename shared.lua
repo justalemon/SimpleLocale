@@ -1,3 +1,5 @@
+local labels = {}
+
 local function getLocale()
     return GetConvar("locale", "en-US")
 end
@@ -33,6 +35,40 @@ local function loadLanguage(resource, language)
         print("Invalid language file for " .. language)
         Debug("Expected table for language file " .. file .. ", got " .. type(parsed))
         return nil
+    end
+end
+
+function Load(resource, baseLocale)
+    local possibleLocales = {
+        baseLocale,
+        getLanguage(baseLocale),
+        "en-US",
+        "en"
+    }
+
+    if labels[resource] == nil then
+        labels[resource] = {}
+    end
+
+    local localizedLabels
+
+    for _, locale in ipairs(possibleLocales) do
+        Debug("Attempting to load " .. locale .. " for " .. resource)
+        localizedLabels = loadLanguage(resource, locale)
+
+        if localizedLabels == nil then
+            labels[resource][locale] = {}
+        else
+            labels[resource][locale] = localizedLabels
+            break
+        end
+    end
+
+    if localizedLabels == nil then
+        print("Couldn't load ANY locale files for resource " .. resource)
+        return false
+    else
+        return true
     end
 end
 

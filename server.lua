@@ -28,4 +28,15 @@ local function getLabel(label)
     return GetLabel(GetInvokingResource(), label, Locale)
 end
 
+local function getLabelForPlayer(player, label)
+    local locale = Locale
+
+    if GetConvarInt("simplelocale_playerlocale", 0) ~= 0 and clientLanguages[player] ~= nil then
+        locale = clientLanguages[player]
+    end
+
+    return GetLabel(GetInvokingResource(), label, locale)
+end
+
 exports("getLabel", getLabel)
+exports("getLabelForPlayer", getLabelForPlayer)

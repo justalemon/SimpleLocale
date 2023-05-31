@@ -16,7 +16,7 @@ function Split(input, sep)
     local t = {}
 
     for str in string.gmatch(input, "([^"..sep.."]+)") do
-        t[#t] = str
+        t[#t + 1] = str
     end
 
     return t

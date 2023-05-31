@@ -7,3 +7,17 @@ function Debug(message)
 
     print(message)
 end
+
+function Split(input, sep)
+    if sep == nil then
+        sep = "%s"
+    end
+
+    local t = {}
+
+    for str in string.gmatch(input, "([^"..sep.."]+)") do
+        t[#t] = str
+    end
+
+    return t
+end

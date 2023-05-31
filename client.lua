@@ -7,6 +7,12 @@ local function getLanguage()
 end
 
 local function getLabel(label)
+    local locale = Locale
+
+    if GetConvarInt("simplelocale_playerlocale", 0) ~= 0 and GameLocale ~= nil then
+        locale = GameLocale
+    end
+
     return GetLabel(GetInvokingResource(), label, Locale)
 end
 

@@ -1,3 +1,19 @@
+LanguageIDs = {
+    [0] = "en-US",
+    [1] = "fr-FR",
+    [2] = "de-DE",
+    [3] = "it-IT",
+    [4] = "es-ES",
+    [5] = "pt-BR",
+    [6] = "pl-PL",
+    [7] = "ru-RU",
+    [8] = "ko-KR",
+    [9] = "zh-TW",
+    [10] = "ja-JP",
+    [11] = "es-MX",
+    [12] = "zh-CN"
+}
+
 local labels = {}
 
 local function getLocale()
